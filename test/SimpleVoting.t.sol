@@ -5,7 +5,6 @@ import "forge-std/Test.sol";
 import {TechCrushToken} from "../src/TechCrushVoteToken.sol";
 import {SimpleVoting} from "../src/SimpleVoting.sol";
 
-
 contract SimpleVotingTest is Test {
     TechCrushToken token;
     SimpleVoting voting;
@@ -27,7 +26,7 @@ contract SimpleVotingTest is Test {
         cands[1] = "APC";
 
         voting.createElection("Nigeria Votes", cands, 1 days);
-        (,,bool active) = voting.election();
+        (,, bool active) = voting.election();
         assertTrue(active);
     }
 

@@ -31,18 +31,14 @@ contract SimpleVoting is Ownable {
 
     // ---------------- OWNER ----------------
 
-    function createElection(
-        string memory _title,
-        string[] memory _candidates,
-        uint256 _duration
-    ) external onlyOwner {
+    function createElection(string memory _title, string[] memory _candidates, uint256 _duration) external onlyOwner {
         require(!election.active, "Election running");
         require(_candidates.length > 0, "Need candidates");
 
         delete election.candidates;
         electionId++;
 
-        for (uint i = 0; i < _candidates.length; i++) {
+        for (uint256 i = 0; i < _candidates.length; i++) {
             election.candidates.push(_candidates[i]);
         }
 
@@ -76,11 +72,11 @@ contract SimpleVoting is Ownable {
 
     function getWinner() external view returns (string memory winnerName) {
         require(election.candidates.length > 0, "No candidates");
-        
+
         uint256 highest;
         uint256 winnerIndex;
 
-        for (uint i = 0; i < election.candidates.length; i++) {
+        for (uint256 i = 0; i < election.candidates.length; i++) {
             if (votes[i] > highest) {
                 highest = votes[i];
                 winnerIndex = i;
